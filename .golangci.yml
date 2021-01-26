@@ -1,0 +1,73 @@
+# https://github.com/golangci/golangci-lint/blob/master/.golangci.example.yml
+# https://gitee.com/okleaf/istio1/blob/master/.golangci.yml
+linters-settings:
+  govet:
+    check-shadowing: true
+  golint:
+    min-confidence: 0
+  gocyclo:
+    min-complexity: 10
+  maligned:
+    suggest-new: true
+  goconst:
+    min-len: 3
+    min-occurrences: 3
+  depguard:
+    list-type: blacklist
+    packages:
+      # logging is allowed only by logutils.Log, logrus
+      # is allowed to use only in logutils package
+      # - github.com/sirupsen/logrus
+  misspell:
+    locale: US
+  lll:
+    line-length: 180
+  funlen:
+    lines: 100
+    statements: 50
+  goimports:
+    local-prefixes: github.com/golangci/golangci-lint
+  gocritic:
+    enabled-tags:
+      - performance
+      - style
+      - experimental
+    disabled-checks:
+      - wrapperFunc
+      # - dupImport # https://github.com/go-critic/go-critic/issues/845
+
+# To see a list of supported linters and which linters are enabled/disabled:
+# https://golangci-lint.run/usage/linters/
+linters:
+  enable-all: true
+  disable:
+    # - maligned
+    - prealloc # 稍后恢复
+    - gochecknoglobals
+    - gocritic # temporary，后面恢复这个，看着很强大
+    - godox # 禁用 TODO/BUG/FIXME 检查
+    - nakedret # 稍后恢复
+    - gocyclo # 稍后恢复
+    - wsl # 和 gofumpt 冲突
+    - gomnd # 稍后恢复
+    - testpackage # 稍后恢复
+    - exhaustivestruct # 稍后恢复
+#    - paralleltest # 关于测试的，稍后恢复
+
+run:
+  skip-dirs:
+    - test/test-data
+    - pkg/submail # 直接复制的官方 sdk 代码
+
+issues:
+  exclude-rules:
+    - text: "weak cryptographic primitive"
+      linters:
+        - gosec
+
+# golangci.com configuration
+# https://github.com/golangci/golangci/wiki/Configuration
+service:
+  golangci-lint-version: 1.17.x # use the fixed version to not introduce new linters unexpectedly
+  prepare:
+    - echo "here I can run custom commands, but no preparation needed for this repo"
