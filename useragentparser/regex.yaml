@@ -30,7 +30,7 @@ devices:
         model: 'iPhone $1'
       - regex: '(?:Apple-)?iPhone ?(3GS?|4S?|5[CS]?|6(:? Plus)?)?'
         model: 'iPhone $1'
-  - regex: '(?is)(?:vivo|iqoo|v\d{4}(a|t|ba|ca|bt|ct|et|ea|ga) build)'
+  - regex: '(?is)(?:vivo|iqoo|v\d{4}(a|t|ba|ca|bt|ct|et|ea|ga|dt|da|a0))'
     brand: 'Vivo'
     models:
       - regex: 'V1824[B]?A(?:[);/ ]|$)'

@@ -72,8 +72,8 @@ func defaultDeviceParsers() []*deviceParser {
 			},
 		},
 		{
-			Reg:   regexp.MustCompile(`(?is)(?:vivo|iqoo|v\d{4}(a|t|ba|ca|bt|ct|et|ea|ga) build)`),
-			Expr:  `(?is)(?:vivo|iqoo|v\d{4}(a|t|ba|ca|bt|ct|et|ea|ga) build)`,
+			Reg:   regexp.MustCompile(`(?is)(?:vivo|iqoo|v\d{4}(a|t|ba|ca|bt|ct|et|ea|ga|dt|da|a0))`),
+			Expr:  `(?is)(?:vivo|iqoo|v\d{4}(a|t|ba|ca|bt|ct|et|ea|ga|dt|da|a0))`,
 			Brand: "vivo",
 			ModelParsers: []*deviceModelParser{
 				{
