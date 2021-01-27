@@ -55,7 +55,7 @@ func (f baseLimiter) Incr() (int64, error) {
 	if err != nil {
 		return 0, errors.Wrap(err, "storage incr err")
 	}
-	if val <= 1 {
+	if val <= 1 && f.duration > 0 {
 		err = f.storage.Expire(f.ctx, f.key, f.duration)
 		if err != nil {
 			return val, errors.Wrap(err, "storage expire err")
