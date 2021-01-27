@@ -4,7 +4,7 @@ package useragentparser
 import (
 	"testing"
 
-	"github.com/magiconair/properties/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestDeviceBrandDetect(t *testing.T) {
