@@ -2,7 +2,6 @@ package useragentparser
 
 import (
 	"regexp"
-	"strings"
 	"sync"
 )
 
@@ -16,20 +15,6 @@ type deviceModelParser struct {
 	Reg   *regexp.Regexp
 	Expr  string `yaml:"regex"`
 	Model string `yaml:"model"`
-}
-
-type deviceParser struct {
-	Reg          *regexp.Regexp
-	Expr         string               `yaml:"regex"`
-	Brand        string               `yaml:"brand"`
-	ModelParsers []*deviceModelParser `yaml:"models"`
-}
-
-type osParser struct {
-	Reg     *regexp.Regexp
-	Expr    string `yaml:"regex"`
-	Family  string `yaml:"family"`
-	Version string `yaml:"version"`
 }
 
 type botParser struct {
@@ -60,6 +45,11 @@ func (parser *userAgentParser) Parse(userAgentString string) (userAgent *UserAge
 		defer wg.Done()
 		userAgent.Device = parser.parseDevice(userAgentString)
 	}()
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		userAgent.Os = parser.parseOs(userAgentString)
+	}()
 	wg.Wait()
 
 	return
@@ -83,24 +73,22 @@ func (parser *userAgentParser) parseDevice(agentString string) *Device {
 	return dvc
 }
 
-func (parser *deviceParser) Match(userAgentString string, device *Device) {
-	matches := parser.Reg.FindStringSubmatchIndex(userAgentString)
-
-	if len(matches) == 0 {
-		return
-	}
-
-	device.Brand = parser.Brand
-
-	for _, modelParser := range parser.ModelParsers {
-		modelMatches := modelParser.Reg.FindStringSubmatchIndex(userAgentString)
-		if len(modelMatches) > 0 {
-			device.Model = string(parser.Reg.ExpandString(nil, modelParser.Model, userAgentString, matches))
-			device.Model = strings.TrimSpace(device.Model)
+func (parser *userAgentParser) parseOs(agentString string) *Os {
+	os := new(Os)
+	found := false
+	for _, osPattern := range parser.OsParsers {
+		osPattern.Match(agentString, os)
+		if len(os.Family) > 0 {
+			found = true
 
 			break
 		}
 	}
+	if !found {
+		os.Family = "Other"
+	}
+
+	return os
 }
 
 type UserAgentParser interface {

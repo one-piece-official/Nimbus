@@ -30,7 +30,8 @@ func TestDeviceBrandDetect(t *testing.T) {
 		{"Huawei", "Mozilla/5.0 (Linux; U; Android 9; zh-CN; COR-AL10 Build/HUAWEICOR-AL10) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/12.6.5.1045 Mobile Safari/537.36"},
 	}
 	for _, casePair := range cases {
-		brand := parser.Parse(casePair[1]).Device.Brand
+		ua := parser.Parse(casePair[1])
+		brand := ua.Device.Brand
 		assert.Equal(t, brand, casePair[0])
 	}
 }
