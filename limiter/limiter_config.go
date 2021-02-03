@@ -4,8 +4,6 @@ import (
 	"context"
 	"fmt"
 	"time"
-
-	"github.com/one-piece-official/Nimbus/hash"
 )
 
 const (
@@ -48,7 +46,7 @@ func Available(ctx context.Context, storage LimitStorage, key, limitType, limitT
 func GetLimiter(ctx context.Context, storage LimitStorage, key, limitType, limitTimeType string, limitTimeLength int, limitAmount int64) Limiter {
 
 	timeKey, duration := getTimeKeyAndDuration(limitTimeType, limitTimeLength)
-	key = fmt.Sprintf("%s_%s", hash.MD5(key), timeKey)
+	key = fmt.Sprintf("%s_%s", key, timeKey)
 
 	switch limitType {
 	case LimitTypeFrequency:
