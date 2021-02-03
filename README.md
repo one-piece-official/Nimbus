@@ -11,7 +11,7 @@
 
 <div align="center">
   <a href="https://app.dependabot.com/accounts/one-piece-official/repos/333034167">
-    <img src="https://api.dependabot.com/badges/status?host=github&repo=one-piece-official/Newt&identifier=333034167" alt="Dependabot">
+    <img src="https://api.dependabot.com/badges/status?host=github&repo=one-piece-official/Nimbus&identifier=333034167" alt="Dependabot">
   </a>
 </div>
 
