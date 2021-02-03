@@ -14,11 +14,12 @@
     <img src="https://api.dependabot.com/badges/status?host=github&repo=one-piece-official/Nimbus&identifier=333034167" alt="Dependabot">
   </a>
   <a href="https://pkg.go.dev/github.com/one-piece-official/Nimbus">
-    <img src="https://img.shields.io/badge/godoc-reference-green.svg?style=flat" alt="GoDoc">
+    <img src="https://img.shields.io/badge/godoc-ref-green.svg?style=flat" alt="GoDoc">
   </a>
   <a href="https://goreportcard.com/report/github.com/one-piece-official/Nimbus">
     <img src="https://goreportcard.com/badge/github.com/one-piece-official/Nimbus" alt="Go Report Card">
   </a>
+  <a href="https://www.codefactor.io/repository/github/one-piece-official/nimbus"><img src="https://www.codefactor.io/repository/github/one-piece-official/nimbus/badge" alt="CodeFactor" /></a>
   <a href="https://github.com/one-piece-official/Nimbus/releases">
     <img src="https://img.shields.io/github/v/tag/one-piece-official/Nimbus.svg?label=release">
   </a>
