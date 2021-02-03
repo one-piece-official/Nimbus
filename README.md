@@ -13,6 +13,12 @@
   <a href="https://app.dependabot.com/accounts/one-piece-official/repos/333034167">
     <img src="https://api.dependabot.com/badges/status?host=github&repo=one-piece-official/Nimbus&identifier=333034167" alt="Dependabot">
   </a>
+  <a href="https://github.com/one-piece-official/Nimbus/actions?query=workflow%3A%22Unit+Test%22">
+    <img src="https://github.com/one-piece-official/Nimbus/workflows/Unit%20Test/badge.svg" alt="Unit Test">
+  </a>
+  <a href="https://github.com/one-piece-official/Nimbus/actions?query=workflow%3AGolangCI-Linter">
+    <img src="https://github.com/one-piece-official/Nimbus/workflows/GolangCI-Linter/badge.svg" alt="Unit Test">
+  </a>
   <a href="https://pkg.go.dev/github.com/one-piece-official/Nimbus">
     <img src="https://img.shields.io/badge/godoc-ref-green.svg?style=flat" alt="GoDoc">
   </a>
