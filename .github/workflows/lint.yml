@@ -1,4 +1,4 @@
-name: GolangCI-Linter
+name: Linter
 
 on: [push]
 
