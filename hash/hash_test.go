@@ -1,9 +1,7 @@
-package hash_test
+package hash
 
 import (
 	"testing"
-
-	"github.com/one-piece-official/Nimbus/hash"
 )
 
 // NOTE: t.Paraller()
@@ -34,7 +32,7 @@ func TestMD5(t *testing.T) {
 		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
-			if got := hash.MD5(tt.args.s); got != tt.want {
+			if got := MD5(tt.args.s); got != tt.want {
 				t.Errorf("MD5() = %v, want %v", got, tt.want)
 			}
 		})
@@ -62,7 +60,7 @@ func TestSHA1(t *testing.T) {
 		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
-			if got := hash.SHA1(tt.args.s); got != tt.want {
+			if got := SHA1(tt.args.s); got != tt.want {
 				t.Errorf("SHA1() = %v, want %v", got, tt.want)
 			}
 		})

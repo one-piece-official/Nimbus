@@ -44,6 +44,7 @@ linters:
     - gochecknoglobals
     - godox # 禁用 TODO/BUG/FIXME 检查
     - wsl # 和 gofumpt 冲突
+    - testpackage # 和 codecov 期待的模式不兼容，无法统计测试覆盖率
 
 run:
   skip-dirs:
