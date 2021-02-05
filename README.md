@@ -15,7 +15,9 @@
   </a>
   <img src="https://github.com/one-piece-official/Nimbus/workflows/Test/badge.svg" alt="Test">
   <img src="https://github.com/one-piece-official/Nimbus/workflows/Linter/badge.svg" alt="GolangCI Linter">
-  <img src="https://github.com/one-piece-official/Nimbus/workflows/codecov/badge.svg" alt="codecov">
+  <a href="https://codecov.io/gh/one-piece-official/Nimbus">
+    <img src="https://codecov.io/gh/one-piece-official/Nimbus/branch/main/graph/badge.svg?token=GP02U8TABE"/>
+  </a>
   <a href="https://pkg.go.dev/github.com/one-piece-official/Nimbus">
     <img src="https://img.shields.io/badge/godoc-ref-green.svg?style=flat" alt="GoDoc">
   </a>
