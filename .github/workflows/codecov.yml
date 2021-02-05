@@ -1,7 +1,4 @@
-
-
-
-name: GolangCI-Linter
+name: codecov
 
 on: [push]
 
