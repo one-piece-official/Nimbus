@@ -78,7 +78,7 @@ Todo.
 * 0.2.1
   * ADD: 限量时间控制
 * 0.2.0
-  * ADD: ADD OS parser `setDefaultXYZ()`
+  * ADD: ADD OS parser
 * 0.1.1
   * ADD: Add new hash module
 
