@@ -1,11 +1,10 @@
 package xtime_test
 
 import (
-	"one-piece-throttle/pkg/xtime"
+	"github.com/one-piece-official/Nimbus/xtime"
+	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"
-
-	"gopkg.in/go-playground/assert.v1"
 )
 
 const TimeLayout = "2006-01-02 15:04:05"
