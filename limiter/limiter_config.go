@@ -44,7 +44,6 @@ func Available(ctx context.Context, storage LimitStorage, key, limitType, limitT
 }
 
 func GetLimiter(ctx context.Context, storage LimitStorage, key, limitType, limitTimeType string, limitTimeLength int, limitAmount int64) Limiter {
-
 	timeKey, duration := getTimeKeyAndDuration(limitTimeType, limitTimeLength)
 	key = fmt.Sprintf("%s_%s", key, timeKey)
 
