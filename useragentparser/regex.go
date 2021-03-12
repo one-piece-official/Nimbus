@@ -5,7 +5,7 @@ import "regexp"
 func defaultOsParsers() []*osParser {
 	return []*osParser{
 		{
-			Reg:     regexp.MustCompile(`(?:(?:Orca-)?Android|Adr)[ /](?:[a-z]+ )?(\d+[\.\d]*)`),
+			Reg:     regexp.MustCompile(`(?:(?:Orca-)?Android|Adr)[ /](?:[a-z]+ )?(\d+[.\d]*)`),
 			Expr:    `(?:(?:Orca-)?Android|Adr)[ /](?:[a-z]+ )?(\d+[\.\d]*)`,
 			Family:  "Android",
 			Version: "$1",

@@ -1,0 +1,39 @@
+name: Test
+
+on: [push]
+
+jobs:
+
+  build:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+      id: go
+
+    - uses: actions/checkout@v2
+
+    - name: Get dependencies
+      run: |
+        go get -v -t -d ./...
+        if [ -f Gopkg.toml ]; then
+            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+            dep ensure
+        fi
+
+    # https://gist.github.com/Harold2017/d98607f242659ca65e731c688cb92707
+    - name: Generate coverage report
+      run: |
+        go test `go list ./... | grep -v examples` -coverprofile=coverage.txt -covermode=atomic
+
+    - name: Upload coverage report to Codecov
+      uses: codecov/codecov-action@v1.0.2
+      with:
+        token: 53b6680d-2005-4adb-93be-1ef2dd35b7c9
+        file: ./coverage.txt
+        flags: unittests
+        name: codecov-umbrella
