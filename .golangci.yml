@@ -15,9 +15,9 @@ linters-settings:
   depguard:
     list-type: blacklist
     packages:
-      # logging is allowed only by logutils.Log, logrus
-      # is allowed to use only in logutils package
-      # - github.com/sirupsen/logrus
+    # logging is allowed only by logutils.Log, logrus
+    # is allowed to use only in logutils package
+    # - github.com/sirupsen/logrus
   misspell:
     locale: US
   lll:
@@ -36,19 +36,22 @@ linters-settings:
       - wrapperFunc
       # - dupImport # https://github.com/go-critic/go-critic/issues/845
 
-# To see a list of supported linters and which linters are enabled/disabled:
-# https://golangci-lint.run/usage/linters/
 linters:
   enable-all: true
   disable:
+    # - maligned
+    - gci # 与 goimports、gofumpt 的包引入顺序冲突
     - gochecknoglobals
+    - gocritic # temporary, 后面恢复这个，看着很强大
     - godox # 禁用 TODO/BUG/FIXME 检查
-    - wsl # 和 gofumpt 冲突
-    - testpackage # 和 codecov 期待的模式不兼容，无法统计测试覆盖率
+    - exhaustivestruct # 暂时禁用
+    - wrapcheck # 暂时禁用
+    - paralleltest # 暂时禁用，没学会
 
 run:
   skip-dirs:
     - test/test-data
+    - pkg/submail # 直接复制的官方 sdk 代码
 
 issues:
   exclude-rules:
