@@ -1,22 +1,25 @@
-package targeting
+package targeting_test
 
 import (
 	"testing"
 
+	"github.com/one-piece-official/Nimbus/targeting"
 	"github.com/stretchr/testify/assert"
 )
 
 // 定向基础 string.
 func TestTargetingSingleContain(t *testing.T) {
 	t.Parallel()
+
 	input := map[string]interface{}{"a": "a", "b": "banana"}
-	rule := &Rule{
+
+	rule := &targeting.Rule{
 		AggregateType: "and",
-		Rules: []Rule{
+		Rules: []targeting.Rule{
 			{
 				AggregateType: "",
 				Rules:         nil,
-				RuleItem: &RuleItem{
+				RuleItem: &targeting.RuleItem{
 					Type:     "include",
 					Key:      "b",
 					Operator: "contain",
@@ -34,14 +37,15 @@ func TestTargetingSingleContain(t *testing.T) {
 // 定向两个 key 各自包含某 string.
 func TestTargetingMultipleAndContain(t *testing.T) {
 	t.Parallel()
+
 	input := map[string]interface{}{"a": "apple", "b": "banana"}
-	rule := &Rule{
+	rule := &targeting.Rule{
 		AggregateType: "and",
-		Rules: []Rule{
+		Rules: []targeting.Rule{
 			{
 				AggregateType: "",
 				Rules:         nil,
-				RuleItem: &RuleItem{
+				RuleItem: &targeting.RuleItem{
 					Type:     "include",
 					Key:      "b",
 					Operator: "contain",
@@ -51,7 +55,7 @@ func TestTargetingMultipleAndContain(t *testing.T) {
 			{
 				AggregateType: "",
 				Rules:         nil,
-				RuleItem: &RuleItem{
+				RuleItem: &targeting.RuleItem{
 					Type:     "include",
 					Key:      "a",
 					Operator: "contain",
@@ -69,14 +73,15 @@ func TestTargetingMultipleAndContain(t *testing.T) {
 // 定向两个 key 其中一个包含某 string.
 func TestTargetingMultipleOrContain(t *testing.T) {
 	t.Parallel()
+
 	input := map[string]interface{}{"a": "apple", "b": "apple"}
-	rule := &Rule{
+	rule := &targeting.Rule{
 		AggregateType: "and",
-		Rules: []Rule{
+		Rules: []targeting.Rule{
 			{
 				AggregateType: "",
 				Rules:         nil,
-				RuleItem: &RuleItem{
+				RuleItem: &targeting.RuleItem{
 					Type:     "include",
 					Key:      "b",
 					Operator: "contain",
@@ -86,7 +91,7 @@ func TestTargetingMultipleOrContain(t *testing.T) {
 			{
 				AggregateType: "",
 				Rules:         nil,
-				RuleItem: &RuleItem{
+				RuleItem: &targeting.RuleItem{
 					Type:     "include",
 					Key:      "a",
 					Operator: "contain",
@@ -104,14 +109,15 @@ func TestTargetingMultipleOrContain(t *testing.T) {
 // 定向两个 key 其中之一==某 string.
 func TestTargetingMultipleOrEqual(t *testing.T) {
 	t.Parallel()
+
 	input := map[string]interface{}{"a": "apple", "b": "banana"}
-	rule := &Rule{
+	rule := &targeting.Rule{
 		AggregateType: "or",
-		Rules: []Rule{
+		Rules: []targeting.Rule{
 			{
 				AggregateType: "",
 				Rules:         nil,
-				RuleItem: &RuleItem{
+				RuleItem: &targeting.RuleItem{
 					Type:     "include",
 					Key:      "b",
 					Operator: "contain",
@@ -121,7 +127,7 @@ func TestTargetingMultipleOrEqual(t *testing.T) {
 			{
 				AggregateType: "",
 				Rules:         nil,
-				RuleItem: &RuleItem{
+				RuleItem: &targeting.RuleItem{
 					Type:     "equal",
 					Key:      "a",
 					Operator: "contain",
@@ -134,6 +140,7 @@ func TestTargetingMultipleOrEqual(t *testing.T) {
 	match, err := rule.Match(input)
 	assert.Equal(t, true, match)
 	assert.Nil(t, err)
+
 	input["a"] = ""
 	match, err = rule.Match(input)
 	assert.Equal(t, true, match)
@@ -143,17 +150,18 @@ func TestTargetingMultipleOrEqual(t *testing.T) {
 // 定向两个 key 其中一个包含某 string.
 func TestTargetingMultipleAndWithMultipleAndContain(t *testing.T) {
 	t.Parallel()
+
 	input := map[string]interface{}{"a": "apple", "b": "bana", "c": "tt"}
-	rule := &Rule{
+	rule := &targeting.Rule{
 		AggregateType: "and",
-		Rules: []Rule{
+		Rules: []targeting.Rule{
 			{
 				AggregateType: "and",
-				Rules: []Rule{
+				Rules: []targeting.Rule{
 					{
 						AggregateType: "",
 						Rules:         nil,
-						RuleItem: &RuleItem{
+						RuleItem: &targeting.RuleItem{
 							Type:     "include",
 							Key:      "b",
 							Operator: "contain",
@@ -163,7 +171,7 @@ func TestTargetingMultipleAndWithMultipleAndContain(t *testing.T) {
 					{
 						AggregateType: "",
 						Rules:         nil,
-						RuleItem: &RuleItem{
+						RuleItem: &targeting.RuleItem{
 							Type:     "include",
 							Key:      "c",
 							Operator: "contain",
@@ -175,7 +183,7 @@ func TestTargetingMultipleAndWithMultipleAndContain(t *testing.T) {
 			{
 				AggregateType: "",
 				Rules:         nil,
-				RuleItem: &RuleItem{
+				RuleItem: &targeting.RuleItem{
 					Type:     "include",
 					Key:      "a",
 					Operator: "contain",
