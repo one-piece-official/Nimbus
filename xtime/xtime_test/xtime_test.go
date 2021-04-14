@@ -1,10 +1,11 @@
 package xtime_test
 
 import (
-	"github.com/one-piece-official/Nimbus/xtime"
-	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"
+
+	"github.com/one-piece-official/Nimbus/xtime"
+	"github.com/stretchr/testify/assert"
 )
 
 const TimeLayout = "2006-01-02 15:04:05"
