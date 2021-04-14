@@ -39,15 +39,21 @@ func NewUserAgentParser() UserAgentParser {
 
 func (parser *userAgentParser) Parse(userAgentString string) (userAgent *UserAgent) {
 	userAgent = &UserAgent{}
+
 	var wg sync.WaitGroup
+
 	wg.Add(1)
+
 	go func() {
 		defer wg.Done()
+
 		userAgent.Device = parser.parseDevice(userAgentString)
 	}()
 	wg.Add(1)
+
 	go func() {
 		defer wg.Done()
+
 		userAgent.Os = parser.parseOs(userAgentString)
 	}()
 	wg.Wait()
@@ -57,15 +63,19 @@ func (parser *userAgentParser) Parse(userAgentString string) (userAgent *UserAge
 
 func (parser *userAgentParser) parseDevice(agentString string) *Device {
 	dvc := new(Device)
+
 	found := false
+
 	for _, dvcPattern := range parser.DeviceParsers {
 		dvcPattern.Match(agentString, dvc)
+
 		if len(dvc.Brand) > 0 {
 			found = true
 
 			break
 		}
 	}
+
 	if !found {
 		dvc.Brand = "Other"
 	}
@@ -76,14 +86,17 @@ func (parser *userAgentParser) parseDevice(agentString string) *Device {
 func (parser *userAgentParser) parseOs(agentString string) *Os {
 	os := new(Os)
 	found := false
+
 	for _, osPattern := range parser.OsParsers {
 		osPattern.Match(agentString, os)
+
 		if len(os.Family) > 0 {
 			found = true
 
 			break
 		}
 	}
+
 	if !found {
 		os.Family = "Other"
 	}
