@@ -12,6 +12,7 @@ const (
 
 	LimitTimeTypeToday     = "today"
 	LimitTimeTypeHour      = "hour"
+	LimitTimeTypeMinute    = "minute"
 	LimitTimeTypeHourToday = "hourToday"
 	LimitTimeTypeForever   = "forever"
 
@@ -22,6 +23,8 @@ func getTimeKeyAndDuration(timeType string, limitTimeLength int) (timeKey string
 	switch timeType {
 	case LimitTimeTypeHour:
 		return timeType, time.Hour * time.Duration(limitTimeLength)
+	case LimitTimeTypeMinute:
+		return timeType, time.Minute * time.Duration(limitTimeLength)
 	case LimitTimeTypeHourToday:
 		return timeType + time.Now().Format("2006-01-02"), time.Hour * time.Duration(limitTimeLength)
 	case LimitTimeTypeForever:
