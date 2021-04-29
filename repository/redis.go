@@ -16,6 +16,10 @@ type RedisKV struct {
 	db *redis.Client
 }
 
+func NewRedisKv(db *redis.Client) *RedisKV {
+	return &RedisKV{db: db}
+}
+
 func (r *RedisKV) Incr(ctx context.Context, key string) error {
 	return r.db.Incr(ctx, key).Err()
 }
