@@ -36,6 +36,10 @@ func (r *RedisKV) Set(ctx context.Context, key string, value interface{}) error 
 	return r.db.Set(ctx, key, value, 0).Err()
 }
 
+func (r *RedisKV) SetWithTTL(ctx context.Context, key string, value interface{}, expiration time.Duration) error {
+	return r.db.SetEX(ctx, key, value, expiration).Err()
+}
+
 func (r *RedisKV) Del(ctx context.Context, key string) (bool, error) {
 	cmd := r.db.Del(ctx, key)
 	if cmd.Err() != nil {
