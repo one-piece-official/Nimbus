@@ -27,11 +27,11 @@ func TestIPHelperChekc(t *testing.T) {
 
 	ipHelper := iphelper.NewIPHelperWithMap(ipDB, mapKV)
 
-	include, err := ipHelper.CheckIPAddressExistsInRegions([]string{"beijing"}, "123.123.123.123", "include")
-	assert.Equal(t, true, include)
+	value, err := ipHelper.CheckIPAddressExistsInRegions([]string{"beijing"}, "123.123.123.123", "include")
+	assert.Equal(t, true, value)
 	assert.Nil(t, err)
 
-	exclude, err := ipHelper.CheckIPAddressExistsInRegions([]string{"beijing"}, "123.123.123.123", "exclude")
-	assert.Equal(t, false, exclude)
+	value, err = ipHelper.CheckIPAddressExistsInRegions([]string{"beijing"}, "123.123.123.123", "exclude")
+	assert.Equal(t, false, value)
 	assert.Nil(t, err)
 }
