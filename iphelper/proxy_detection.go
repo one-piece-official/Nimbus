@@ -7,7 +7,7 @@ import (
 )
 
 // ProxyDetector 检测 IP 是否是代理，是代理返回 true.
-func (ipHelper *IPHelper) ProxyDetector(ip string, threshold int64) (detected bool) {
+func (ipHelper *ipipIPHelper) ProxyDetector(ip string, threshold int64) (detected bool) {
 	if threshold == 0 || ipHelper.ipProxyKVDB == nil {
 		return false
 	}

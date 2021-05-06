@@ -21,6 +21,13 @@ func TestIncr(t *testing.T) {
 	value, err := mapKV.Get(ctx, "1")
 	assert.Equal(t, value, "1")
 	assert.Nil(t, err)
+
+	err = mapKV.Incr(ctx, "1")
+	assert.Nil(t, err)
+
+	value, err = mapKV.Get(ctx, "1")
+	assert.Equal(t, value, "2")
+	assert.Nil(t, err)
 }
 
 func TestSetAndGet(t *testing.T) {
