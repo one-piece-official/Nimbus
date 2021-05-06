@@ -11,6 +11,7 @@ import (
 
 func TestIPHelperChekc(t *testing.T) {
 	t.Parallel()
+
 	ipDB := map[string]map[string]string{
 		"123.123.123.123": {
 			iphelper.KeyCity:   "beijing",
