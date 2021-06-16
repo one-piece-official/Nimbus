@@ -16,6 +16,10 @@ type RedisKV struct {
 	db *redis.Client
 }
 
+func (r *RedisKV) GetByte(ctx context.Context, key string) ([]byte, error) {
+	return r.db.Get(ctx, key).Bytes()
+}
+
 func NewRedisKv(db *redis.Client) *RedisKV {
 	return &RedisKV{db: db}
 }
