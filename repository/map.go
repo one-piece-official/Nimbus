@@ -17,18 +17,6 @@ type MapKV struct {
 	db map[string]interface{}
 }
 
-func (r *MapKV) GetByte(ctx context.Context, key string) ([]byte, error) {
-	err := errorValueNotExist
-
-	var value string
-	if r.db[key] != nil {
-		value = fmt.Sprintf("%v", r.db[key])
-		err = nil
-	}
-
-	return []byte(value), err
-}
-
 func NewMapKV(db map[string]interface{}) *MapKV {
 	return &MapKV{db: db}
 }

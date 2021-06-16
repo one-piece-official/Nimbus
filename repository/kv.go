@@ -17,7 +17,6 @@ type KVIface interface {
 	Exists(ctx context.Context, key string) (bool, error)
 	MGet(ctx context.Context, keys ...string) ([]interface{}, error)
 	Get(ctx context.Context, key string) (string, error)
-	GetByte(ctx context.Context, key string) ([]byte, error)
 	Expire(ctx context.Context, key string, duration time.Duration) error
 	Close()
 }
