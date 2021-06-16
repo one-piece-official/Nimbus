@@ -1,7 +1,9 @@
 package useragentparser
 
 import (
+	"net/url"
 	"regexp"
+	"strings"
 	"sync"
 )
 
@@ -62,6 +64,13 @@ func (parser *userAgentParser) Parse(userAgentString string) (userAgent *UserAge
 }
 
 func (parser *userAgentParser) parseDevice(agentString string) *Device {
+	if strings.Contains(agentString, "%") {
+		originAgentString, err := url.QueryUnescape(agentString)
+		if err == nil {
+			agentString = originAgentString
+		}
+	}
+
 	dvc := new(Device)
 
 	found := false
