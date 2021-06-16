@@ -2,7 +2,6 @@ package useragentparser
 
 import (
 	"regexp"
-	"strings"
 )
 
 type Device struct {
@@ -18,21 +17,21 @@ type deviceParser struct {
 }
 
 func (parser *deviceParser) Match(userAgentString string, device *Device) {
-	matches := parser.Reg.FindStringSubmatchIndex(userAgentString)
+	// FindStringSubmatchIndex when find models
+	matches := parser.Reg.FindStringIndex(userAgentString)
 
 	if len(matches) == 0 {
 		return
 	}
 
+	//for _, modelParser := range parser.ModelParsers {
+	//	modelMatches := modelParser.Reg.FindStringSubmatchIndex(userAgentString)
+	//	if len(modelMatches) > 0 {
+	//		device.Model = string(parser.Reg.ExpandString(nil, modelParser.Model, userAgentString, matches))
+	//		device.Model = strings.TrimSpace(device.Model)
+	//
+	//		break
+	//	}
+	//}
 	device.Brand = parser.Brand
-
-	for _, modelParser := range parser.ModelParsers {
-		modelMatches := modelParser.Reg.FindStringSubmatchIndex(userAgentString)
-		if len(modelMatches) > 0 {
-			device.Model = string(parser.Reg.ExpandString(nil, modelParser.Model, userAgentString, matches))
-			device.Model = strings.TrimSpace(device.Model)
-
-			break
-		}
-	}
 }
