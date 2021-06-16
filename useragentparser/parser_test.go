@@ -70,14 +70,30 @@ var cases = [][]string{
 	{"Huawei", "Mozilla/5.0 (Linux; Android 9; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/71.0.3578.99 Mobile Safari/537.36 hap/1077/huawei com.huawei.fastapp/3.1.1.300 com.yslqo.bettersaying/1.2.0 ({\x22packageName\x22:\x22com.huawei.systemmanager\x22,\x22type\x22:\x22url\x22,\x22extra\x22:\x22{}\x22})"},
 	{"Huawei", "Mozilla/5.0 (Linux; U; Android 9; zh-Hans-CN; VTR-AL00 Build/HUAWEIVTR-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 Quark/3.5.1.118 Mobile Safari/537.36"},
 	{"Huawei", "Mozilla/5.0 (Linux; U; Android 9; zh-CN; COR-AL10 Build/HUAWEICOR-AL10) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/12.6.5.1045 Mobile Safari/537.36"},
+	{"Xiaomi", "Dalvik/2.1.0 (Linux; U; Android 10; M2006C3LC MIUI/V12.0.12.0.QCDCNXM)"},
+	{"vivo", "Mozilla/5.0 (Linux; Android 11; V2118A Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36"},
+	{"vivo", "Mozilla/5.0 (Linux; Android 11; V2046A Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36"},
+	{"vivo", "Mozilla/5.0 (Linux; Android 8.1.0; VIVO Build/VIVOVIVO; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.108 Mobile Safari/537.36"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {
 	parser := useragentparser.NewUserAgentParser()
 	size := int64(len(cases))
+	b.ReportAllocs()
 	for n := 0; n < b.N; n++ {
 		parser.Parse(cases[time.Now().UnixNano()%size][1])
 	}
+}
+
+func BenchmarkUserAgentParserParallel(b *testing.B) {
+	parser := useragentparser.NewUserAgentParser()
+	size := int64(len(cases))
+
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			parser.Parse(cases[time.Now().UnixNano()%size][1])
+		}
+	})
 }
 
 func TestDeviceBrandDetect(t *testing.T) {
