@@ -75,6 +75,7 @@ var cases = [][]string{
 	{"vivo", "Mozilla/5.0 (Linux; Android 11; V2046A Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36"},
 	{"vivo", "Mozilla/5.0 (Linux; Android 8.1.0; VIVO Build/VIVOVIVO; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.108 Mobile Safari/537.36"},
 	{"OPPO", "Mozilla%2F5.0+%28Linux%3B+Android+10%3B+PACT00+Build%2FQP1A.190711.020%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F77.0.3865.92+Mobile+Safari%2F537.36"},
+	{"Huawei", "Mozilla/5.0 (Linux; Android 9; JSN-AL00a; HMSCore 5.3.0.312) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.93 HuaweiBrowser/11.1.1.310 Mobile Safari/537.36"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {
