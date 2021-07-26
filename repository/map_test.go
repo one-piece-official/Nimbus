@@ -29,11 +29,11 @@ func TestIncr(t *testing.T) {
 	assert.Equal(t, value, "2")
 	assert.Nil(t, err)
 
-	_, err = mapKV.IncrByAndGet(ctx, "1", 4)
+	_, err = mapKV.IncrByAndGet(ctx, "1", -2)
 	assert.Nil(t, err)
 
 	value, err = mapKV.Get(ctx, "1")
-	assert.Equal(t, value, "6")
+	assert.Equal(t, value, "0")
 	assert.Nil(t, err)
 }
 
