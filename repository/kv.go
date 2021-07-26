@@ -8,6 +8,7 @@ import (
 type KVIface interface {
 	Incr(ctx context.Context, key string) error
 	IncrAndGet(ctx context.Context, key string) (int64, error)
+	IncrByAndGet(ctx context.Context, key string, value int64) (int64, error)
 	Set(ctx context.Context, key string, value interface{}) error
 	SetWithTTL(ctx context.Context, key string, value interface{}, expiration time.Duration) error
 	Del(ctx context.Context, key string) (bool, error)

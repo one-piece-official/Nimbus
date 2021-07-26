@@ -28,6 +28,10 @@ func (r *RedisKV) IncrAndGet(ctx context.Context, key string) (int64, error) {
 	return r.db.Incr(ctx, key).Result()
 }
 
+func (r *RedisKV) IncrByAndGet(ctx context.Context, key string, value int64) (int64, error) {
+	return r.db.IncrBy(ctx, key, value).Result()
+}
+
 func (r *RedisKV) Expire(ctx context.Context, key string, duration time.Duration) error {
 	return r.db.Expire(ctx, key, duration).Err()
 }

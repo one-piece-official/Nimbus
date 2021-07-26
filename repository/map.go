@@ -51,6 +51,27 @@ func (r *MapKV) IncrAndGet(ctx context.Context, key string) (int64, error) {
 	return value, nil
 }
 
+func (r *MapKV) IncrByAndGet(ctx context.Context, key string, value int64) (int64, error) {
+	currentValue := r.db[key]
+	if currentValue == nil {
+		currentValue = int64(0)
+	}
+
+	intValue, ok := currentValue.(int64)
+	if !ok {
+		return 0, fmt.Errorf("%w %v", errorValueNotInt, currentValue)
+	}
+
+	r.db[key] = intValue + value
+
+	newValue, ok := r.db[key].(int64)
+	if !ok {
+		return 0, fmt.Errorf("%w %v", errorValueNotInt, r.db[key])
+	}
+
+	return newValue, nil
+}
+
 func (r *MapKV) Expire(ctx context.Context, key string, duration time.Duration) error {
 	return nil
 }
