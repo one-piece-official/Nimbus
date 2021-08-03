@@ -38,7 +38,7 @@ func TestIPHelperChekc(t *testing.T) {
 	assert.Equal(t, false, value)
 	assert.Nil(t, err)
 
-	ipDB[testIP][iphelper.KeyCountry] = ""
+	ipDB[testIP][iphelper.KeyCountry] = "123"
 	value, err = ipHelper.CheckIPAddressExistsInRegions([]string{"beijing"}, testIP, "include")
 	assert.Equal(t, false, value)
 	assert.NotNil(t, err)
