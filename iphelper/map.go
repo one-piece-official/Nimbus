@@ -30,7 +30,7 @@ func (ipHelper *mapIPHelper) CheckIPAddressExistsInRegions(regions []string, ip,
 	}
 
 	for _, target := range regions {
-		if target == mp[KeyRegion] || target == mp[KeyCity] {
+		if target == mp[KeyRegion] || target == mp[KeyCity] || target == mp[KeyCountry] {
 			return direction == "include", nil // 在白名单中，可以投放
 		}
 	}
