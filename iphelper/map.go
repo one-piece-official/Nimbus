@@ -29,8 +29,12 @@ func (ipHelper *mapIPHelper) CheckIPAddressExistsInRegions(regions []string, ip,
 		return false, fmt.Errorf("get addr from ipdb failed, ip: %s, err: %w", ip, err)
 	}
 
+	if mp[KeyCountry] != "中国" {
+		return false, fmt.Errorf("not chinese ip, ip: %s, err: %w", ip, err)
+	}
+
 	for _, target := range regions {
-		if target == mp[KeyRegion] || target == mp[KeyCity] || target == mp[KeyCountry] {
+		if target == mp[KeyRegion] || target == mp[KeyCity] {
 			return direction == "include", nil // 在白名单中，可以投放
 		}
 	}
