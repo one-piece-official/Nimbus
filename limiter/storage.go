@@ -30,7 +30,7 @@ func (r redisLimitStorage) Incr(context context.Context, key string, count int64
 // TODO 是否需要支持 mget.
 func (r redisLimitStorage) Get(context context.Context, key string) (int64, error) {
 	value, err := r.kvDB.Get(context, key)
-	if err != nil {
+	if err != nil && !errors.Is(err, repository.ErrorKVNil) {
 		return 0, errors.Wrap(err, "cannot get from redis")
 	}
 

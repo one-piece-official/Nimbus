@@ -146,12 +146,16 @@ func (r *MapKV) MGet(ctx context.Context, keys ...string) ([]interface{}, error)
 }
 
 func (r *MapKV) Get(ctx context.Context, key string) (string, error) {
+	var err error
+
 	var value string
 	if r.db[key] != nil {
 		value = fmt.Sprintf("%v", r.db[key])
+	} else {
+		err = ErrorKVNil
 	}
 
-	return value, nil
+	return value, err
 }
 
 func (r *MapKV) Close() {

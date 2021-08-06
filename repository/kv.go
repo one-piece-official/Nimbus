@@ -2,8 +2,11 @@ package repository
 
 import (
 	"context"
+	"fmt"
 	"time"
 )
+
+var ErrorKVNil = fmt.Errorf("kv nil")
 
 type KVIface interface {
 	Incr(ctx context.Context, key string) error

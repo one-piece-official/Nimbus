@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"time"
 
@@ -103,7 +104,12 @@ func (r *RedisKV) MGet(ctx context.Context, keys ...string) ([]interface{}, erro
 }
 
 func (r *RedisKV) Get(ctx context.Context, key string) (string, error) {
-	return r.db.Get(ctx, key).Result()
+	value, err := r.db.Get(ctx, key).Result()
+	if err != nil && errors.Is(err, redis.Nil) {
+		err = ErrorKVNil
+	}
+
+	return value, err
 }
 
 func (r *RedisKV) Close() {
