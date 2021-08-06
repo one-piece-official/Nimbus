@@ -34,6 +34,10 @@ func (r redisLimitStorage) Get(context context.Context, key string) (int64, erro
 		return 0, errors.Wrap(err, "cannot get from redis")
 	}
 
+	if value == "" {
+		return 0, nil
+	}
+
 	count, err := strconv.Atoi(value)
 	if err != nil {
 		return 0, errors.Wrap(err, "value is not int")
