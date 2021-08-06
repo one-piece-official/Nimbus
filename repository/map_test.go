@@ -46,7 +46,7 @@ func TestSetAndGet(t *testing.T) {
 
 	value, err := mapKV.Get(ctx, "1")
 	assert.Equal(t, value, "")
-	assert.NotNil(t, err)
+	assert.Nil(t, err)
 
 	_ = mapKV.Set(ctx, "1", 1)
 
@@ -64,5 +64,5 @@ func TestSetAndGet(t *testing.T) {
 
 	value, err = mapKV.Get(ctx, "1")
 	assert.Equal(t, value, "")
-	assert.NotNil(t, err)
+	assert.Nil(t, err)
 }

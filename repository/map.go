@@ -10,7 +10,6 @@ var (
 	errorFieldValueNotInt = fmt.Errorf("field not a int value")
 	errorValueNotInt      = fmt.Errorf("not a int value")
 	errorValueNotHash     = fmt.Errorf("not a hash value")
-	errorValueNotExist    = fmt.Errorf("value not exist")
 )
 
 type MapKV struct {
@@ -38,8 +37,7 @@ func (r *MapKV) Incr(ctx context.Context, key string) error {
 }
 
 func (r *MapKV) IncrAndGet(ctx context.Context, key string) (int64, error) {
-	err := r.Incr(ctx, key)
-	if err != nil {
+	if err := r.Incr(ctx, key); err != nil {
 		return 0, err
 	}
 
@@ -148,15 +146,12 @@ func (r *MapKV) MGet(ctx context.Context, keys ...string) ([]interface{}, error)
 }
 
 func (r *MapKV) Get(ctx context.Context, key string) (string, error) {
-	err := errorValueNotExist
-
 	var value string
 	if r.db[key] != nil {
 		value = fmt.Sprintf("%v", r.db[key])
-		err = nil
 	}
 
-	return value, err
+	return value, nil
 }
 
 func (r *MapKV) Close() {
