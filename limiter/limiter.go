@@ -67,13 +67,19 @@ func (f baseLimiter) Incr() (int64, error) {
 }
 
 func (f frequencyLimiter) Available() bool {
-	val, _ := f.storage.Get(f.ctx, f.key)
+	val, err := f.storage.Get(f.ctx, f.key)
+	if err != nil {
+		return false
+	}
 
 	return val == 1 || val%f.threshold == 0
 }
 
 func (f thresholdLimiter) Available() bool {
-	val, _ := f.storage.Get(f.ctx, f.key)
+	val, err := f.storage.Get(f.ctx, f.key)
+	if err != nil {
+		return false
+	}
 
 	return val < f.threshold
 }
