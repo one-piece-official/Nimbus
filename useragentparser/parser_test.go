@@ -75,7 +75,15 @@ var cases = [][]string{
 	{"vivo", "Mozilla/5.0 (Linux; Android 11; V2046A Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36"},
 	{"vivo", "Mozilla/5.0 (Linux; Android 8.1.0; VIVO Build/VIVOVIVO; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.108 Mobile Safari/537.36"},
 	{"OPPO", "Mozilla%2F5.0+%28Linux%3B+Android+10%3B+PACT00+Build%2FQP1A.190711.020%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F77.0.3865.92+Mobile+Safari%2F537.36"},
+	//{"OPPO", "Mozilla%252F5.0%2B%2528Linux%253B%2BAndroid%2B8.1.0%253B%2BOPPO%2BR11%2BPluskt%2BBuild%252FOPM1.171019.011%253B%2Bwv%2529%2BAppleWebKit%252F537.36%2B%2528KHTML%252C%2Blike%2BGecko%2529%2BVersion%252F4.0%2BChrome%252F62.0.3202.84%2BMobile%2BSafari%252F537.36%2BYUEDU-NA_1080_1920_8.1.0_7.3.0.1_OPPO%2BR11%2BPluskt"},
 	{"Huawei", "Mozilla/5.0 (Linux; Android 9; JSN-AL00a; HMSCore 5.3.0.312) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.93 HuaweiBrowser/11.1.1.310 Mobile Safari/537.36"},
+	{"Huawei", "Mozilla/5.0 (Linux; Android 10.1; P40 Build/MRA58K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045618 Mobile Safari/537.36"},
+	{"OPPO", "ting_8.3.21(OPPO R11s,Android27)"},
+	{"vivo", "ting_8.3.12(; V2002A Build,Android29)"},
+	{"OPPO", "ting_8.3.21(; PEGM10 ,Android30)"},
+	{"Xiaomi", "Mozilla/5.0 (Linux; Android 10; M2105K81C Build/QKQ1.190828.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.101 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.5 com.bqteng.enjoyphrase/2.9.3 ({\"packageName\":\"\",\"type\":\"url\",\"extra\":{}})"},
+	{"Xiaomi", "Mozilla/5.0 (Linux; Android 11; M2104K10AC Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/92.0.4515.131 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.5 com.ernxzc.tonguetwisterart/2.1.0 ({\"packageName\":\"\",\"type\":\"url\",\"extra\":{}})"},
+	{"Xiaomi", "Mozilla/5.0 (Linux; Android 11; 21091116C Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/94.0.4606.85 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.5 com.inyneo.magicwhodoneit/2.1.5 ({\"packageName\":\"com.sina.weibo\",\"type\":\"url\",\"extra\":{}})"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {
