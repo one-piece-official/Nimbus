@@ -85,6 +85,7 @@ var cases = [][]string{
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 10; M2105K81C Build/QKQ1.190828.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.101 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.5 com.bqteng.enjoyphrase/2.9.3 ({\"packageName\":\"\",\"type\":\"url\",\"extra\":{}})"},
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 11; M2104K10AC Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/92.0.4515.131 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.5 com.ernxzc.tonguetwisterart/2.1.0 ({\"packageName\":\"\",\"type\":\"url\",\"extra\":{}})"},
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 11; 21091116C Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/94.0.4606.85 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.5 com.inyneo.magicwhodoneit/2.1.5 ({\"packageName\":\"com.sina.weibo\",\"type\":\"url\",\"extra\":{}})"},
+	{"Xiaomi", "Mozilla/5.0 (Linux; Android 11; M2101K9C Build/RKQ1.201112.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.5 com.guangtui.novel.full/2.1.1 ({\"packageName\":\"\",\"type\":\"url\",\"extra\":{}})"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {
