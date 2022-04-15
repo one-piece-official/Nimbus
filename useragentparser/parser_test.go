@@ -10,7 +10,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// 额外的大规模 ua 检测，不提交仅参考
+//
+//// 额外的大规模 ua 检测，不提交仅参考
 //func TestDeviceBrandByTxt(t *testing.T) {
 //	file, err := os.Open(fmt.Sprintf("user-agent.txt"))
 //	defer file.Close()
