@@ -21,6 +21,61 @@ func defaultOsParsers() []*osParser {
 	}
 }
 
+func fuzzyBrandMapping() map[string]string {
+	return map[string]string{
+		"vivo":      brandVivo,
+		"oppo":      brandOppo,
+		"mi ":       brandXiaomi,
+		"redmi":     brandXiaomi,
+		"huawei":    brandHuawei,
+		"hm ":       brandXiaomi,
+		"mix ":      brandXiaomi,
+		"oneplus":   brandOppo,
+		"harmonyos": brandHuawei,
+		"r7plus":    brandOppo,
+	}
+}
+
+func modelMapping() map[string]string {
+	return map[string]string{
+		"v1901a":           "vivo",
+		"v2057a":           "vivo",
+		"v1934a":           "vivo",
+		"v2002a":           "vivo",
+		"vivo x21a":        "vivo",
+		"m2012k11ac":       "Xiaomi",
+		"m2006c3lc":        "Xiaomi",
+		"m2007j17c":        "Xiaomi",
+		"m2007j22c":        "Xiaomi",
+		"redmi note 8 pro": "Xiaomi",
+		"m2104k10ac":       "Xiaomi",
+		"redmi note 8":     "Xiaomi",
+		"redmi k30 5g":     "Xiaomi",
+		"mi 8":             "Xiaomi",
+		"mi 6x":            "Xiaomi",
+		"pbam00":           brandOppo,
+		"pbem00":           brandOppo,
+		"pdym20":           brandOppo,
+		"pdbm00":           brandOppo,
+		"pcam10":           brandOppo,
+		"pcam00":           brandOppo,
+		"pdvm00":           brandOppo,
+		"pacm00":           brandOppo,
+		"peam00":           brandOppo,
+		"oppo r11":         brandOppo,
+		"sea-al10":         brandHuawei,
+		"ele-al00":         brandHuawei,
+		"tas-an00":         brandHuawei,
+		"ana-an00":         brandHuawei,
+		"hlk-al00":         brandHuawei,
+		"els-an00":         brandHuawei,
+		"lio-an00":         brandHuawei,
+		"hma-al00":         brandHuawei,
+		"jef-an00":         brandHuawei,
+		"noh-an00":         brandHuawei,
+	}
+}
+
 func defaultBotParsers() []*botParser {
 	return []*botParser{
 		{

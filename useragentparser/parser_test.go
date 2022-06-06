@@ -10,10 +10,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-//
 //// 额外的大规模 ua 检测，不提交仅参考
 //func TestDeviceBrandByTxt(t *testing.T) {
-//	file, err := os.Open(fmt.Sprintf("user-agent.txt"))
+//	file, err := os.Open(fmt.Sprintf("user-agent3.txt"))
 //	defer file.Close()
 //
 //	if err != nil {
@@ -35,9 +34,25 @@ import (
 //
 //	for scanner.Scan() {
 //		var content map[string]interface{}
-//		json.Unmarshal(scanner.Bytes(), &content)
+//		err := json.Unmarshal(scanner.Bytes(), &content)
+//		if err != nil {
+//			continue
+//		}
+//
 //		ua := content["userAgent"].(string)
-//		appBrand := strings.ToLower(content["manufacturer"].(string))
+//		if strings.Contains(ua, "AliXAdSDK;") ||
+//			strings.Contains(ua, "TBAndroid/Native") ||
+//			strings.Contains(ua, "SohuVideoMobile") ||
+//			strings.Contains(ua, "ting_") ||
+//			strings.Contains(ua, "Dart/2") ||
+//			strings.Contains(ua, "okhttp") {
+//			continue
+//		}
+//
+//		appBrand := strings.ToLower(content["brand"].(string))
+//		if content["manufacturer"] != nil {
+//			appBrand = strings.ToLower(content["manufacturer"].(string))
+//		}
 //		if brandMapping[appBrand] != "" {
 //			appBrand = brandMapping[appBrand]
 //		}
@@ -82,11 +97,14 @@ var cases = [][]string{
 	{"OPPO", "ting_8.3.21(OPPO R11s,Android27)"},
 	{"vivo", "ting_8.3.12(; V2002A Build,Android29)"},
 	{"OPPO", "ting_8.3.21(; PEGM10 ,Android30)"},
+	{"Huawei", "ting_9.0.39(LYA-AL00,Android29)"},
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 10; M2105K81C Build/QKQ1.190828.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.101 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.5 com.bqteng.enjoyphrase/2.9.3 ({\"packageName\":\"\",\"type\":\"url\",\"extra\":{}})"},
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 11; M2104K10AC Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/92.0.4515.131 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.5 com.ernxzc.tonguetwisterart/2.1.0 ({\"packageName\":\"\",\"type\":\"url\",\"extra\":{}})"},
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 11; 21091116C Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/94.0.4606.85 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.5 com.inyneo.magicwhodoneit/2.1.5 ({\"packageName\":\"com.sina.weibo\",\"type\":\"url\",\"extra\":{}})"},
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 11; M2101K9C Build/RKQ1.201112.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.5 com.guangtui.novel.full/2.1.1 ({\"packageName\":\"\",\"type\":\"url\",\"extra\":{}})"},
 	{"Xiaomi", "Mozilla/5.0 (Linux; U; Android 12; zh-cn; M2104K10I Build/SP1A.210812.016) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.116 Mobile Safari/537.36 XiaoMi/MiuiBrowser/16.0.22 swan-mibrowser"},
+	{"OPPO", "Dalvik/2.1.0 (Linux; U; Android 10; PELM00 MIUI/V12.5.1.0.QDGCNXM)"},
+	{"OPPO", "ting_9.0.39(R6007,Android18)"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {
@@ -115,7 +133,7 @@ func TestDeviceBrandDetect(t *testing.T) {
 	for _, casePair := range cases {
 		ua := parser.Parse(casePair[1])
 		brand := ua.Device.Brand
-		t.Log(casePair)
+		// fmt.Println(casePair[1], ua.Device.Brand, ua.Device.Model, ua.Os.Family, ua.Os.Version)
 		assert.Equal(t, casePair[0], brand)
 	}
 }
