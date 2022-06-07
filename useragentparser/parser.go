@@ -133,7 +133,9 @@ func (parser *userAgentParser) parseOs(agentString string) *Os {
 	return os
 }
 
+// nolint
 func (parser *userAgentParser) preDetect(agentString string) (userAgent *UserAgent) {
+	//
 	if strings.Contains(agentString, "iPhone") {
 		return &UserAgent{
 			Device: &Device{Brand: brandApple, Model: ""},
@@ -212,6 +214,7 @@ func (parser *userAgentParser) preDetect(agentString string) (userAgent *UserAge
 	return
 }
 
+// nolint
 func (parser *userAgentParser) modelStrToDevice(model string) *Device {
 	if brand, ok := parser.ModelMapping[model]; ok {
 		return &Device{
@@ -281,7 +284,7 @@ func (parser *userAgentParser) modelStrToDevice(model string) *Device {
 		}
 	}
 
-	if len(model) >= 7 && len(model) <= 10 && model[0] == '2' && model[1] <= '1' && isEn(model[len(model)-1]) {
+	if len(model) >= 7 && len(model) <= 10 && model[0] == '2' && model[1] <= '2' && isEn(model[len(model)-1]) {
 		return &Device{
 			Brand: brandXiaomi,
 			Model: model,

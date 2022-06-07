@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-////// 额外的大规模 ua 检测，不提交仅参考
+//// 额外的大规模 ua 检测，不提交仅参考
 //func TestDeviceBrandByTxt(t *testing.T) {
 //	file, err := os.Open(fmt.Sprintf("user-agent3.txt"))
 //	defer file.Close()
@@ -113,6 +113,9 @@ var cases = [][]string{
 	{"vivo", "Dalvik/2.1.0 (Linux; U; Android 10; V2002A Build/QP1A.190711.020)"},
 	{"vivo", "AliXAdSDK;10.2.23;Android;10;V2036A"},
 	{"Other", "Mozilla/5.0 (Linux; Android 7.0; 1872-A0 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/75.0.3770.156 Mobile Safari/537.36"},
+	{"Xiaomi", "Mozilla/5.0 (Linux; U; Android 12; zh-cn; M2104K10I Build/SP1A.210812.016) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.116 Mobile Safari/537.36 XiaoMi/MiuiBrowser/16.0.22 swan-mibrowser"},
+	{"Xiaomi", "Mozilla/5.0 (Linux; Android 12; M2104K10I Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.104 Mobile Safari/537.36"},
+	{"Xiaomi", "Mozilla/5.0 (Linux; Android 12; 22041211AC Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.104 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.6 com.inyneo.magicwhodoneit/2.7.0 ({\"packageName\":\"com.miui.quickappCenter\",\"type\":\"url\",\"extra\":{\"scene\":\"\"}})"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {
