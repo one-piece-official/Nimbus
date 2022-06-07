@@ -112,6 +112,7 @@ var cases = [][]string{
 	{"vivo", "Mozilla/5.0 (Linux; Android 9; V1831A Build/P00610; wv) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36 VivoBrowser/9.6.14.0"},
 	{"vivo", "Dalvik/2.1.0 (Linux; U; Android 10; V2002A Build/QP1A.190711.020)"},
 	{"vivo", "AliXAdSDK;10.2.23;Android;10;V2036A"},
+	{"Other", "Mozilla/5.0 (Linux; Android 7.0; 1872-A0 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/75.0.3770.156 Mobile Safari/537.36"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {

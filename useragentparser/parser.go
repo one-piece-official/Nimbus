@@ -289,7 +289,7 @@ func (parser *userAgentParser) modelStrToDevice(model string) *Device {
 	}
 
 	if len(model) >= 7 &&
-		((model[3] == '-' && isNum(model[6])) || (model[4] == '-' && isNum(model[7]))) {
+		((model[3] == '-' && isNum(model[6])) || (len(model) > 7 && model[4] == '-' && isNum(model[7]))) {
 		return &Device{
 			Brand: brandHuawei,
 			Model: model,
