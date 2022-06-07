@@ -178,7 +178,7 @@ func (parser *userAgentParser) preDetect(agentString string) (userAgent *UserAge
 			system = items[1]
 			model = strings.TrimSpace(strings.Split(items[0], " build")[0])
 		} else if items[0] == "android" {
-			system = "Android " + strings.Split(items[1], ".")[0]
+			system = "android " + strings.Split(items[1], ".")[0]
 			model = strings.TrimSpace(strings.Split(items[2], " build")[0])
 		} else {
 			system = items[0]
@@ -191,7 +191,7 @@ func (parser *userAgentParser) preDetect(agentString string) (userAgent *UserAge
 	if systemItems := strings.Split(system, "android"); len(systemItems) > 1 {
 		userAgent.Os = &Os{
 			Family:  "Android",
-			Version: systemItems[1],
+			Version: strings.Split(strings.TrimSpace(systemItems[1]), ".")[0],
 		}
 	}
 

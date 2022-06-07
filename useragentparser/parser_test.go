@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-//// 额外的大规模 ua 检测，不提交仅参考
+////// 额外的大规模 ua 检测，不提交仅参考
 //func TestDeviceBrandByTxt(t *testing.T) {
 //	file, err := os.Open(fmt.Sprintf("user-agent3.txt"))
 //	defer file.Close()
@@ -105,6 +105,11 @@ var cases = [][]string{
 	{"Xiaomi", "Mozilla/5.0 (Linux; U; Android 12; zh-cn; M2104K10I Build/SP1A.210812.016) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.116 Mobile Safari/537.36 XiaoMi/MiuiBrowser/16.0.22 swan-mibrowser"},
 	{"OPPO", "Dalvik/2.1.0 (Linux; U; Android 10; PELM00 MIUI/V12.5.1.0.QDGCNXM)"},
 	{"OPPO", "ting_9.0.39(R6007,Android18)"},
+	{"Huawei", "Mozilla/5.0 (Linux; Android 10.0; TRT-LX2 Build/HUAWEITRT-LX2; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/59.0.3071.125 Mobile Safari/537.36"},
+	{"vivo", "Mozilla/5.0 (Linux; Android 10; V1829A Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.96 Mobile Safari/537.36"},
+	{"OPPO", "Mozilla/5.0 (Linux; Android 8.1.0; OPPO R11s Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36"},
+	{"vivo", "Mozilla/5.0 (Linux; Android 9; V1831A Build/P00610; wv) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36 VivoBrowser/9.6.14.0"},
+	{"vivo", "Dalvik/2.1.0 (Linux; U; Android 10; V2002A Build/QP1A.190711.020)"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {
@@ -133,7 +138,9 @@ func TestDeviceBrandDetect(t *testing.T) {
 	for _, casePair := range cases {
 		ua := parser.Parse(casePair[1])
 		brand := ua.Device.Brand
-		// fmt.Println(casePair[1], ua.Device.Brand, ua.Device.Model, ua.Os.Family, ua.Os.Version)
+		// fmt.Println(ua.Device.Brand, ua.Device.Model, ua.Os.Family, ua.Os.Version)
+		// fmt.Println(ua.Device.Brand, ua.Os.Family, ua.Os.Version)
+		// t.Error(casePair[1])
 		assert.Equal(t, casePair[0], brand)
 	}
 }
