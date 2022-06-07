@@ -158,8 +158,8 @@ func (parser *userAgentParser) preDetect(agentString string) (userAgent *UserAge
 	if strings.HasPrefix(agentString, "AliXAdSDK") || strings.HasPrefix(agentString, "Youku") {
 		mainPart = agentString
 		items = strings.Split(agentString, ";")
-		model = items[len(items)-1]
-		system = "Android " + items[len(items)-2]
+		model = strings.ToLower(items[len(items)-1])
+		system = "android " + items[len(items)-2]
 	} else {
 		mainPart = strings.Replace(mainPart, "Linux;", "", 1)
 		mainPart = strings.Replace(mainPart, "U;", "", 1)
@@ -186,6 +186,14 @@ func (parser *userAgentParser) preDetect(agentString string) (userAgent *UserAge
 		}
 
 		model = strings.Split(model, ",")[0]
+	}
+
+	if strings.HasPrefix(agentString, "ting") {
+		if strings.Split(mainPart, "android")[1] >= "29" {
+			system = "android 10"
+		} else {
+			system = "android 9"
+		}
 	}
 
 	if systemItems := strings.Split(system, "android"); len(systemItems) > 1 {

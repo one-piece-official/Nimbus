@@ -2,6 +2,7 @@
 package useragentparser_test
 
 import (
+	"fmt"
 	"testing"
 	"time"
 
@@ -110,6 +111,7 @@ var cases = [][]string{
 	{"OPPO", "Mozilla/5.0 (Linux; Android 8.1.0; OPPO R11s Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36"},
 	{"vivo", "Mozilla/5.0 (Linux; Android 9; V1831A Build/P00610; wv) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36 VivoBrowser/9.6.14.0"},
 	{"vivo", "Dalvik/2.1.0 (Linux; U; Android 10; V2002A Build/QP1A.190711.020)"},
+	{"vivo", "AliXAdSDK;10.2.23;Android;10;V2036A"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {
@@ -138,7 +140,7 @@ func TestDeviceBrandDetect(t *testing.T) {
 	for _, casePair := range cases {
 		ua := parser.Parse(casePair[1])
 		brand := ua.Device.Brand
-		// fmt.Println(ua.Device.Brand, ua.Device.Model, ua.Os.Family, ua.Os.Version)
+		fmt.Println(ua.Device.Brand, ua.Device.Model, ua.Os.Family, ua.Os.Version)
 		// fmt.Println(ua.Device.Brand, ua.Os.Family, ua.Os.Version)
 		// t.Error(casePair[1])
 		assert.Equal(t, casePair[0], brand)
