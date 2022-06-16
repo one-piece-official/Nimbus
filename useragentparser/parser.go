@@ -166,10 +166,12 @@ func (parser *userAgentParser) preDetect(agentString string) (userAgent *UserAge
 		mainPart = strings.Replace(mainPart, "Linux;", "", 1)
 		mainPart = strings.Replace(mainPart, "U;", "", 1)
 		mainPart = strings.ToLower(mainPart)
+		mainPart = strings.Replace(mainPart, "en-us;", "", 1)
 		mainPart = strings.Replace(mainPart, "zh-cn;", "", 1)
 		mainPart = strings.Replace(mainPart, "zh-hans-cn;", "", 1)
 		mainPart = strings.Replace(mainPart, "zh-tw;", "", 1)
 		mainPart = strings.Replace(mainPart, "zh-mo;", "", 1)
+		mainPart = strings.Replace(mainPart, "zh-hk;", "", 1)
 		mainPart = strings.TrimSpace(mainPart)
 
 		items = strings.Split(mainPart, ";")
@@ -180,8 +182,10 @@ func (parser *userAgentParser) preDetect(agentString string) (userAgent *UserAge
 			system = items[1]
 			model = strings.TrimSpace(strings.Split(items[0], " build")[0])
 		} else if items[0] == "android" {
-			system = "android " + strings.Split(items[1], ".")[0]
-			model = strings.TrimSpace(strings.Split(items[2], " build")[0])
+			if len(items) > 2 {
+				system = "android " + strings.Split(items[1], ".")[0]
+				model = strings.TrimSpace(strings.Split(items[2], " build")[0])
+			}
 		} else {
 			system = items[0]
 			model = strings.TrimSpace(strings.Split(items[1], " build")[0])
@@ -295,6 +299,20 @@ func (parser *userAgentParser) modelStrToDevice(model string) *Device {
 		((model[3] == '-' && isNum(model[6])) || (len(model) > 7 && model[4] == '-' && isNum(model[7]))) {
 		return &Device{
 			Brand: brandHuawei,
+			Model: model,
+		}
+	}
+
+	if len(model) == 6 && isEn(model[0]) && isEn(model[1]) && isNum(model[2]) && isNum(model[5]) {
+		return &Device{
+			Brand: brandOppo,
+			Model: model,
+		}
+	}
+
+	if strings.HasPrefix(model, "cph") {
+		return &Device{
+			Brand: brandOppo,
 			Model: model,
 		}
 	}

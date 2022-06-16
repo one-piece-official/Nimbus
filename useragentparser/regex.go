@@ -33,6 +33,8 @@ func fuzzyBrandMapping() map[string]string {
 		"oneplus":   brandOppo,
 		"harmonyos": brandHuawei,
 		"r7plus":    brandOppo,
+		"mi9":       brandXiaomi,
+		"shark":     brandXiaomi,
 	}
 }
 

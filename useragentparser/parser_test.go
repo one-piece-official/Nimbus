@@ -54,6 +54,11 @@ import (
 //		if content["manufacturer"] != nil {
 //			appBrand = strings.ToLower(content["manufacturer"].(string))
 //		}
+//
+//		if strings.Contains(ua, "SHARK") || strings.Contains(ua, "22041216C") {
+//			appBrand = "xiaomi"
+//		}
+//
 //		if brandMapping[appBrand] != "" {
 //			appBrand = brandMapping[appBrand]
 //		}
@@ -64,6 +69,11 @@ import (
 //		//}
 //		if detectedBrand != appBrand {
 //			fmt.Println(ua, appBrand, detectedBrand, serverBrand)
+//			if appBrand == "other" {
+//				time.Sleep(10)
+//			} else {
+//				os.Exit(1)
+//			}
 //		}
 //	}
 //}
@@ -116,6 +126,8 @@ var cases = [][]string{
 	{"Xiaomi", "Mozilla/5.0 (Linux; U; Android 12; zh-cn; M2104K10I Build/SP1A.210812.016) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.116 Mobile Safari/537.36 XiaoMi/MiuiBrowser/16.0.22 swan-mibrowser"},
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 12; M2104K10I Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.104 Mobile Safari/537.36"},
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 12; 22041211AC Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.104 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.6 com.inyneo.magicwhodoneit/2.7.0 ({\"packageName\":\"com.miui.quickappCenter\",\"type\":\"url\",\"extra\":{\"scene\":\"\"}})"},
+	{"Xiaomi", "Mozilla/5.0 (Linux; Android 11; Mi9 Pro 5G Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/3225 MMWEBSDK/20210601 Mobile Safari/537.36 MMWEBID/6518 MicroMessenger/8.0.7.1920(0x28000737) Process/appbrand0 WeChat/arm64 Weixin NetType/4G Language/zh_CN ABI/arm64 MiniProgramEnv/android"},
+	{"Huawei", "Dalvik/2.1.0 (Linux; U; Android 10; WLZ-AN00 Build/HUAWEIWLZ-AN00)"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {
