@@ -32,7 +32,9 @@ func getTimeKeyAndDuration(timeType string, limitTimeLength int, hourDelta int64
 	case LimitTimeTypeForever:
 		return timeType, time.Hour * 366 * hoursPerDay
 	default:
-		return now.Format("2006-01-02"), time.Hour * hoursPerDay
+		remainHours := hoursPerDay - now.Hour()
+
+		return now.Format("2006-01-02"), time.Hour * time.Duration(remainHours)
 	}
 }
 
