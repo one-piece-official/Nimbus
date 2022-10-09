@@ -128,6 +128,7 @@ var cases = [][]string{
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 12; 22041211AC Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.104 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.6 com.inyneo.magicwhodoneit/2.7.0 ({\"packageName\":\"com.miui.quickappCenter\",\"type\":\"url\",\"extra\":{\"scene\":\"\"}})"},
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 11; Mi9 Pro 5G Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/3225 MMWEBSDK/20210601 Mobile Safari/537.36 MMWEBID/6518 MicroMessenger/8.0.7.1920(0x28000737) Process/appbrand0 WeChat/arm64 Weixin NetType/4G Language/zh_CN ABI/arm64 MiniProgramEnv/android"},
 	{"Huawei", "Dalvik/2.1.0 (Linux; U; Android 10; WLZ-AN00 Build/HUAWEIWLZ-AN00)"},
+	{"Other", "Mozilla/5.0 (Android;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/102.0.5005.50 Mobile Safari/537.36 vision_mode/1 bdapp/1.0 (baiduboxvision; baiduboxvision) baiduboxapp/10.0 (Baidu; P1 9) Quark/5.6.8.212 UCBrowser/114514 BingSapphire/22.1.400120302 WuZhui/8.1.1 360 Aphone Browser (114514) HeyTapBrowser/10.7.12.0.2beta"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {
