@@ -16,6 +16,23 @@ type MapKV struct {
 	db map[string]interface{}
 }
 
+func (r *MapKV) TTL(ctx context.Context, key string) (time.Duration, error) {
+	if value, ok := r.db[key]; ok {
+		data, dataOK := value.(map[string]interface{})
+		if !dataOK {
+			return time.Duration(-1), ErrorKVNoExpire
+		}
+
+		if expire, expireOK := data["expire"].(time.Duration); expireOK {
+			return expire, nil
+		} else {
+			return time.Duration(-1), ErrorKVNoExpire
+		}
+	} else {
+		return time.Duration(-2), ErrorKVNil
+	}
+}
+
 func NewMapKV(db map[string]interface{}) *MapKV {
 	return &MapKV{db: db}
 }

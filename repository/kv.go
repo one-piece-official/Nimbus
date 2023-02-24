@@ -6,7 +6,10 @@ import (
 	"time"
 )
 
-var ErrorKVNil = fmt.Errorf("kv nil")
+var (
+	ErrorKVNil      = fmt.Errorf("kv nil")
+	ErrorKVNoExpire = fmt.Errorf("kv no expire")
+)
 
 type KVIface interface {
 	Incr(ctx context.Context, key string) error
@@ -22,6 +25,7 @@ type KVIface interface {
 	MGet(ctx context.Context, keys ...string) ([]interface{}, error)
 	Get(ctx context.Context, key string) (string, error)
 	Expire(ctx context.Context, key string, duration time.Duration) error
+	TTL(ctx context.Context, key string) (time.Duration, error)
 	Close()
 }
 

@@ -3,6 +3,7 @@ package repository_test
 import (
 	"context"
 	"testing"
+	"time"
 
 	"github.com/one-piece-official/Nimbus/repository"
 	"github.com/stretchr/testify/assert"
@@ -35,6 +36,31 @@ func TestIncr(t *testing.T) {
 	value, err = mapKV.Get(ctx, "1")
 	assert.Equal(t, value, "0")
 	assert.Nil(t, err)
+}
+
+func TestTTL(t *testing.T) {
+	t.Parallel()
+
+	ctx := context.Background()
+
+	mapKV := repository.NewMapKV(map[string]interface{}{
+		"k": map[string]interface{}{
+			"expire": time.Hour,
+		},
+		"k1": "1",
+	})
+
+	value, err := mapKV.TTL(ctx, "k")
+	assert.Equal(t, value, time.Hour)
+	assert.Nil(t, err)
+
+	value, err = mapKV.TTL(ctx, "k1")
+	assert.Equal(t, value, time.Duration(-1))
+	assert.NotNil(t, err)
+
+	value, err = mapKV.TTL(ctx, "k2")
+	assert.Equal(t, value, time.Duration(-2))
+	assert.NotNil(t, err)
 }
 
 func TestSetAndGet(t *testing.T) {

@@ -17,6 +17,15 @@ type RedisKV struct {
 	db *redis.Client
 }
 
+func (r *RedisKV) TTL(ctx context.Context, key string) (time.Duration, error) {
+	cmd := r.db.TTL(ctx, key)
+	if cmd.Err() != nil {
+		return time.Duration(-2), nil
+	}
+
+	return cmd.Val(), cmd.Err()
+}
+
 func NewRedisKv(db *redis.Client) *RedisKV {
 	return &RedisKV{db: db}
 }
