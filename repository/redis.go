@@ -99,6 +99,10 @@ func (r *RedisKV) HIncr(ctx context.Context, key, field string, incr int64) erro
 	return r.db.HIncrBy(ctx, key, field, incr).Err()
 }
 
+func (r *RedisKV) HIncrAndGet(ctx context.Context, key, field string, incr int64) (int64, error) {
+	return r.db.HIncrBy(ctx, key, field, incr).Result()
+}
+
 func (r *RedisKV) Exists(ctx context.Context, key string) (bool, error) {
 	ret, err := r.db.Exists(ctx, key).Result()
 	if err != nil {
@@ -114,6 +118,15 @@ func (r *RedisKV) MGet(ctx context.Context, keys ...string) ([]interface{}, erro
 
 func (r *RedisKV) Get(ctx context.Context, key string) (string, error) {
 	value, err := r.db.Get(ctx, key).Result()
+	if err != nil && errors.Is(err, redis.Nil) {
+		err = ErrorKVNil
+	}
+
+	return value, err
+}
+
+func (r *RedisKV) HGet(ctx context.Context, key, field string) (string, error) {
+	value, err := r.db.HGet(ctx, key, field).Result()
 	if err != nil && errors.Is(err, redis.Nil) {
 		err = ErrorKVNil
 	}
