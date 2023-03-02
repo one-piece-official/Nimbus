@@ -143,6 +143,23 @@ func (r *MapKV) HIncr(ctx context.Context, key, field string, incr int64) error 
 	return nil
 }
 
+func (r *MapKV) HIncrAndGet(ctx context.Context, key, field string, incr int64) (int64, error) {
+	mapValue, ok := r.db[key].(map[string]interface{})
+	if !ok {
+		return 0, fmt.Errorf("%w %v", errorValueNotHash, r.db[key])
+	}
+
+	intValue, ok := mapValue[field].(int64)
+	if !ok {
+		return 0, fmt.Errorf("%w %v", errorFieldValueNotInt, mapValue[field])
+	}
+
+	mapValue[field] = intValue + 1
+	r.db[key] = mapValue
+
+	return intValue + 1, nil
+}
+
 func (r *MapKV) Exists(ctx context.Context, key string) (bool, error) {
 	return r.db[key] != nil, nil
 }
@@ -168,6 +185,23 @@ func (r *MapKV) Get(ctx context.Context, key string) (string, error) {
 	var value string
 	if r.db[key] != nil {
 		value = fmt.Sprintf("%v", r.db[key])
+	} else {
+		err = ErrorKVNil
+	}
+
+	return value, err
+}
+
+func (r *MapKV) HGet(ctx context.Context, key, field string) (string, error) {
+	var err error
+	mapValue, ok := r.db[key].(map[string]interface{})
+	if !ok {
+		return "", fmt.Errorf("%w %v", errorValueNotHash, r.db[key])
+	}
+
+	var value string
+	if mapValue[field] != nil {
+		value = fmt.Sprintf("%v", mapValue[field])
 	} else {
 		err = ErrorKVNil
 	}
