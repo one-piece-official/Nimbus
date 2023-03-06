@@ -16,6 +16,7 @@ type KVIface interface {
 	IncrAndGet(ctx context.Context, key string) (int64, error)
 	HIncrAndGet(ctx context.Context, key, field string, inrc int64) (int64, error)
 	IncrByAndGet(ctx context.Context, key string, value int64) (int64, error)
+	DecrByAndGet(ctx context.Context, key string, value int64) (int64, error)
 	Set(ctx context.Context, key string, value interface{}) error
 	SetWithTTL(ctx context.Context, key string, value interface{}, expiration time.Duration) error
 	Del(ctx context.Context, key string) (bool, error)
