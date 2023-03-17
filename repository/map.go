@@ -191,7 +191,11 @@ func (r *MapKV) MGet(ctx context.Context, keys ...string) ([]interface{}, error)
 	for i, key := range keys {
 		var value string
 		if r.db[key] != nil {
-			value = fmt.Sprintf("%v", r.db[key])
+			if valueMap, ok := r.db[key].(map[string]interface{}); ok {
+				value = fmt.Sprintf("%v", valueMap["value"])
+			} else {
+				value = fmt.Sprintf("%v", r.db[key])
+			}
 		}
 
 		values[i] = value

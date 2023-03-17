@@ -45,6 +45,7 @@ func TestTTL(t *testing.T) {
 
 	mapKV := repository.NewMapKV(map[string]interface{}{
 		"k": map[string]interface{}{
+			"value":  "1",
 			"expire": time.Hour,
 		},
 		"k1": "1",
@@ -61,6 +62,10 @@ func TestTTL(t *testing.T) {
 	value, err = mapKV.TTL(ctx, "k2")
 	assert.Equal(t, value, time.Duration(-2))
 	assert.NotNil(t, err)
+
+	values, err := mapKV.MGet(ctx, "k", "k1", "k2")
+	assert.Equal(t, values[0], "1")
+	assert.Equal(t, values[1], "1")
 }
 
 func TestSetAndGet(t *testing.T) {
