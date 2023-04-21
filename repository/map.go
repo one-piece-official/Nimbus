@@ -234,5 +234,9 @@ func (r *MapKV) HGet(ctx context.Context, key, field string) (string, error) {
 	return value, err
 }
 
+func (r *MapKV) GetDB(ctx context.Context) interface{} {
+	return r.db
+}
+
 func (r *MapKV) Close() {
 }

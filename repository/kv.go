@@ -29,6 +29,7 @@ type KVIface interface {
 	HGet(ctx context.Context, key, field string) (string, error)
 	Expire(ctx context.Context, key string, duration time.Duration) error
 	TTL(ctx context.Context, key string) (time.Duration, error)
+	GetDB(ctx context.Context) interface{}
 	Close()
 }
 
