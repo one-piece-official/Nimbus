@@ -134,6 +134,10 @@ func (r *RedisKV) HGet(ctx context.Context, key, field string) (string, error) {
 	return value, err
 }
 
+func (r *RedisKV) GetDB(ctx context.Context) interface{} {
+	return r.db
+}
+
 func (r *RedisKV) Close() {
 	_ = r.db.Close()
 }
