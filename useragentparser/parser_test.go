@@ -129,6 +129,10 @@ var cases = [][]string{
 	{"Xiaomi", "Mozilla/5.0 (Linux; Android 11; Mi9 Pro 5G Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/3225 MMWEBSDK/20210601 Mobile Safari/537.36 MMWEBID/6518 MicroMessenger/8.0.7.1920(0x28000737) Process/appbrand0 WeChat/arm64 Weixin NetType/4G Language/zh_CN ABI/arm64 MiniProgramEnv/android"},
 	{"Huawei", "Dalvik/2.1.0 (Linux; U; Android 10; WLZ-AN00 Build/HUAWEIWLZ-AN00)"},
 	{"Other", "Mozilla/5.0 (Android;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/102.0.5005.50 Mobile Safari/537.36 vision_mode/1 bdapp/1.0 (baiduboxvision; baiduboxvision) baiduboxapp/10.0 (Baidu; P1 9) Quark/5.6.8.212 UCBrowser/114514 BingSapphire/22.1.400120302 WuZhui/8.1.1 360 Aphone Browser (114514) HeyTapBrowser/10.7.12.0.2beta"},
+	//{"Huawei", "Mozilla/5.0 (Linux; Android 11; SP100 Build/CMDCSP100;)AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/18.0.1025 Mobile Safari/537.36 hap/1104/huawei com.huawei.fastapp/13.0.1.300 com.mskjf.techinside/2.2.5 ({\"packageName\":\"com.mampod.ergedd\",\"type\":\"other\",\"extra\":\"{}\"})"},
+	{"Huawei", "Mozilla/5.0 (Linux; Android 12; NCO-AL00 Build/HUAWEINCO-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/107.0.5304.141 Mobile Safari/537.36 XWEB/5023 MMWEBSDK/20230303 MMWEBID/98 MicroMessenger/8.0.34.2340(0x2800223D) WeChat/arm64 Weixin NetType/4G Language/zh_CN ABI/arm64"},
+	{"Huawei", "Mozilla/5.0 (Linux; U; Android 12; en-CN; JAD-AL00 Build/HUAWEIJAD-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/100.0.4896.58 Quark/6.2.5.247 Mobile Safari/537.36"},
+	{"Xiaomi", "Mozilla/5.0 (Linux; Android 13; 23049RAD8C Build/TKQ1.221114.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/108.0.5359.128 Mobile Safari/537.36 hap/1.10/xiaomi com.miui.hybrid/1.10.3.6 com.ex.gratia/2.0.16 ({\"packageName\":\"com.miui.hybrid\",\"type\":\"other\",\"extra\":{}})"},
 }
 
 func BenchmarkUserAgentParser(b *testing.B) {
