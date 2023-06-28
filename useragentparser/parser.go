@@ -288,7 +288,7 @@ func (parser *userAgentParser) modelStrToDevice(model string) *Device {
 		}
 	}
 
-	if len(model) >= 7 && len(model) <= 10 && model[0] == '2' && model[1] <= '2' && isEn(model[len(model)-1]) {
+	if len(model) >= 7 && len(model) <= 10 && model[0] == '2' && model[1] <= '3' && isEn(model[len(model)-1]) {
 		return &Device{
 			Brand: brandXiaomi,
 			Model: model,
