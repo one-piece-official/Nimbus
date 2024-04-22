@@ -52,6 +52,16 @@ func NewUserAgentParser() UserAgentParser {
 	}
 }
 
+func NewUserAgentWithMapping(models map[string]string) UserAgentParser {
+	return &userAgentParser{
+		OsParsers:     defaultOsParsers(),
+		BotParsers:    defaultBotParsers(),
+		DeviceParsers: defaultDeviceParsers(),
+		ModelMapping:  models,
+		FuzzyMapping:  fuzzyBrandMapping(),
+	}
+}
+
 func (parser *userAgentParser) Parse(userAgentString string) (userAgent *UserAgent) {
 	if strings.Contains(userAgentString, "%") {
 		originAgentString, err := url.QueryUnescape(userAgentString)
